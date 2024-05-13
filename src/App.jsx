@@ -8,7 +8,7 @@ import rainyIcon from './assets/rainy.png';
 import snowIcon from './assets/snow.png';
 import sunnyIcon from './assets/sunny.png';
 import windyIcon from './assets/windy.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const WeatherDetails = ({ error, icon, temp, city, country, lati, long, windSpeed, humidity }) => {
   return (
@@ -57,11 +57,11 @@ function App() {
 
   const apiKey = "04139978167fb2218b0159a7fae7746c";
 
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState("Colombo");
   const [loading, setLoading] = useState(false);
   const [icon, setIcon] = useState(clearIcon);
   const [temp, setTemp] = useState("");
-  const [city, setCity] = useState("Colombo");
+  const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [lati, setLati] = useState("");
   const [long, setLong] = useState("");
@@ -101,12 +101,11 @@ function App() {
     setLoading(true);
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}&units=Metric`;
-    console.log('api url: ', url);
 
     try {
       let res = await fetch(url);
       const data = await res.json();
-      console.log("data: ", data)
+      // console.log("data: ", data)
 
       if (data.cod === "404") {
         console.log("City Not Found");
@@ -135,9 +134,9 @@ function App() {
     }
   }
 
-
-
-
+  useEffect(function () {
+    search();
+  }, [])
 
   return (
     <>
@@ -148,10 +147,8 @@ function App() {
             <img src={searchIcon} alt="search-con" onClick={() => search()} />
           </div>
         </div>
-
         <WeatherDetails error={error} icon={icon} temp={temp} city={city} country={country} lati={lati} long={long} windSpeed={windSpeed} humidity={humidity} />
       </div>
-
     </>
   )
 }
