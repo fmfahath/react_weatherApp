@@ -10,43 +10,45 @@ import sunnyIcon from './assets/sunny.png';
 import windyIcon from './assets/windy.png';
 import { useState } from 'react';
 
-const WeatherDetails = ({ icon, temp, city, country, lati, long, windSpeed, humidity }) => {
+const WeatherDetails = ({ error, icon, temp, city, country, lati, long, windSpeed, humidity }) => {
   return (
     <>
-      <div className='weather-details'>
-        <div className="weather-image">
-          <img src={icon} alt="wetaher-img" />
-        </div>
-        <div className="weather-temp">{temp}°C</div>
-        <div className="weather-city">{city}</div>
-        <div className="weather-country">{country}</div>
-        <div className="weather-cord">
-          <div className="latitude">
-            <span>Latitude</span>
-            <span className='lat'> {lati}</span>
+      {error ? <p className='error'> &ldquo; City Not Found  &rdquo;</p> :
+        <div className='weather-details'>
+          <div className="weather-image">
+            <img src={icon} alt="wetaher-img" />
           </div>
-          <div className="longtitude">
-            <span>Longtitude</span>
-            <span className='long'> {long}</span>
-          </div>
-        </div>
-        <div className="data-container">
-          <div className="wind-data">
-            <img src={windyIcon} alt="windSpeed" />
-            <div className='wind-speed'>
-              <span className='data'>{windSpeed} Kmph</span>
-              <span>Speed</span>
+          <div className="weather-temp">{temp}°C</div>
+          <div className="weather-city">{city}</div>
+          <div className="weather-country">{country}</div>
+          <div className="weather-cord">
+            <div className="latitude">
+              <span>Latitude</span>
+              <span className='lat'> {lati}</span>
+            </div>
+            <div className="longtitude">
+              <span>Longtitude</span>
+              <span className='long'> {long}</span>
             </div>
           </div>
-          <div className="humidity-data">
-            <img src={humidityIcon} alt="humidity" />
-            <div className='humidity'>
-              <span className='data'>{humidity}%</span>
-              <span>Humidity</span>
+          <div className="data-container">
+            <div className="wind-data">
+              <img src={windyIcon} alt="windSpeed" />
+              <div className='wind-speed'>
+                <span className='data'>{windSpeed} Kmph</span>
+                <span>Speed</span>
+              </div>
+            </div>
+            <div className="humidity-data">
+              <img src={humidityIcon} alt="humidity" />
+              <div className='humidity'>
+                <span className='data'>{humidity}%</span>
+                <span>Humidity</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      }
     </>
   )
 };
@@ -147,7 +149,7 @@ function App() {
           </div>
         </div>
 
-        <WeatherDetails icon={icon} temp={temp} city={city} country={country} lati={lati} long={long} windSpeed={windSpeed} humidity={humidity} />
+        <WeatherDetails error={error} icon={icon} temp={temp} city={city} country={country} lati={lati} long={long} windSpeed={windSpeed} humidity={humidity} />
       </div>
 
     </>
