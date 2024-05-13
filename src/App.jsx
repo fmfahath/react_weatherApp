@@ -10,12 +10,12 @@ import sunnyIcon from './assets/sunny.png';
 import windyIcon from './assets/windy.png';
 import { useState } from 'react';
 
-const WeatherDetails = ({ temp, city, country, lati, long, windSpeed, humidity }) => {
+const WeatherDetails = ({ icon, temp, city, country, lati, long, windSpeed, humidity }) => {
   return (
     <>
       <div className='weather-details'>
         <div className="weather-image">
-          <img src={clearIcon} alt="wetaher-img" />
+          <img src={icon} alt="wetaher-img" />
         </div>
         <div className="weather-temp">{temp}°C</div>
         <div className="weather-city">{city}</div>
@@ -57,7 +57,7 @@ function App() {
 
   const [userInput, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [icon, setSetIcon] = useState(clearIcon);
+  const [icon, setIcon] = useState(clearIcon);
   const [temp, setTemp] = useState("");
   const [city, setCity] = useState("Colombo");
   const [country, setCountry] = useState("");
@@ -66,6 +66,24 @@ function App() {
   const [windSpeed, setWindSpeed] = useState("");
   const [humidity, setHumidity] = useState("");
   const [error, setError] = useState(false);
+
+
+  const weatherIconMap = {
+    "01d": clearIcon,
+    "01n": clearIcon,
+    "02d": cloudyIcon,
+    "02n": cloudyIcon,
+    "03d": drizzleIcon,
+    "03n": drizzleIcon,
+    "04d": drizzleIcon,
+    "04n": drizzleIcon,
+    "09d": rainyIcon,
+    "09n": rainyIcon,
+    "10d": rainyIcon,
+    "10n": rainyIcon,
+    "13d": snowIcon,
+    "13n": snowIcon,
+  }
 
   const handleInput = (e) => {
     setUserInput(e.target.value);
@@ -103,6 +121,10 @@ function App() {
       setWindSpeed(data.wind.speed);
       setHumidity(data.main.humidity);
 
+      const weatherIcon = data.weather[0].icon;
+      setIcon(weatherIconMap[weatherIcon] || clearIcon);
+
+      setError(false);
 
     } catch (error) {
       console.log("API Fetch Error: ", error.message);
@@ -125,7 +147,7 @@ function App() {
           </div>
         </div>
 
-        <WeatherDetails temp={temp} city={city} country={country} lati={lati} long={long} windSpeed={windSpeed} humidity={humidity} />
+        <WeatherDetails icon={icon} temp={temp} city={city} country={country} lati={lati} long={long} windSpeed={windSpeed} humidity={humidity} />
       </div>
 
     </>

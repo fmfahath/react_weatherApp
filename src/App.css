@@ -63,8 +63,9 @@ body {
 }
 
 .weather-image img {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  margin-bottom: 20px;
 }
 
 .weather-temp {
@@ -76,11 +77,12 @@ body {
 .weather-city {
   color: #f2ae0a;
   font-size: 35px;
+  margin-bottom: 5px;
 }
 
 .weather-country {
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .weather-cord {
