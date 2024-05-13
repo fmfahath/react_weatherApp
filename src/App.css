@@ -1,0 +1,59 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('./assets/bg4.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-backdrop-filter: blur(8px) brightness(80%);
+  backdrop-filter: blur(8px) brightness(70%);
+
+}
+
+.container {
+  width: 450px;
+  /* height: 550px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.7px);
+  -webkit-backdrop-filter: blur(5.7px);
+  border: 1px solid rgba(255, 255, 255, 0.77);
+
+}
+
+.input-container {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.input-container input {
+  flex: 1;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  background: transparent;
+}
+
+.search-icon {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.search-icon img {
+  height: 30px;
+  width: 30px;
+}
